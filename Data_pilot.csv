@@ -1,0 +1,119 @@
+Larvae age,Larvae batch,Tray Number,Cue,settled_10hrs,unattached_10hrs,settled_20hrs,unattached_20hrs,settled_30hrs,unattached_30hrs ,Crab
+35,1,1c,Sterilized shell,0,6,0,6,0,6,G1
+35,1,2e,Sterilized shell,1,5,0,6,2,4,G1
+35,1,3d,Sterilized shell,1,5,2,4,2,4,G1
+35,1,4b,Sterilized shell,0,6,1,5,1,5,G1
+35,1,5f,Sterilized shell,1,5,3,3,3,3,G1
+35,1,6f,Sterilized shell,0,6,1,5,1,5,G1
+35,1,7c,Sterilized shell,0,6,0,6,0,6,G1
+35,1,8e,Sterilized shell,1,5,0,6,1,5,G1
+35,1,9d,Sterilized shell,1,4,1,4,1,4,G1
+35,1,10b,Sterilized shell,1,5,1,5,1,5,G1
+28,2,11c,Sterilized shell,0,6,0,6,0,6,G2
+28,2,12e,Sterilized shell,1,4,2,3,2,3,G2
+28,2,13d,Sterilized shell,0,6,0,6,0,6,G2
+28,2,15f,Sterilized shell,0,6,0,6,0,6,G2
+28,2,16f,Sterilized shell,1,5,1,5,1,5,G2
+28,2,17c,Sterilized shell,0,5,0,5,0,5,G2
+28,2,18e,Sterilized shell,0,6,0,6,0,6,G2
+28,2,19d,Sterilized shell,0,6,0,6,0,6,G2
+28,2,20b,Sterilized shell,0,5,0,5,0,5,G2
+30,2,21c,Sterilized shell,0,6,1,5,1,5,R1
+30,2,22e,Sterilized shell,0,5,0,5,1,4,R1
+30,2,23d,Sterilized shell,0,6,0,6,1,5,R1
+30,2,24b,Sterilized shell,0,6,0,6,0,6,R1
+30,2,25f,Sterilized shell,0,6,0,6,0,6,R1
+30,2,26f,Sterilized shell,0,6,0,6,0,6,R1
+30,2,27c,Sterilized shell,0,6,0,5,0,5,R1
+30,2,28e,Sterilized shell,0,6,0,5,0,5,R1
+30,2,29d,Sterilized shell,0,6,1,5,1,5,R1
+30,2,30b,Sterilized shell,1,5,2,4,1,5,R1
+35,1,1d,Sterilized shell + conspecific cue,1,5,1,5,1,5,G1
+35,1,2b,Sterilized shell + conspecific cue,0,6,0,6,1,5,G1
+35,1,3f,Sterilized shell + conspecific cue,0,6,1,5,2,4,G1
+35,1,4c,Sterilized shell + conspecific cue,0,5,0,5,0,5,G1
+35,1,5e,Sterilized shell + conspecific cue,0,6,1,5,2,4,G1
+35,1,6b,Sterilized shell + conspecific cue,1,5,1,5,2,4,G1
+35,1,7d,Sterilized shell + conspecific cue,0,6,0,6,0,6,G1
+35,1,8b,Sterilized shell + conspecific cue,0,6,4,2,4,2,G1
+35,1,9f,Sterilized shell + conspecific cue,0,6,2,4,2,4,G1
+35,1,10c,Sterilized shell + conspecific cue,1,5,2,4,2,4,G1
+28,2,11d,Sterilized shell + conspecific cue,5,2,6,1,6,1,G2
+28,2,12b,Sterilized shell + conspecific cue,1,5,1,5,1,5,G2
+28,2,13f,Sterilized shell + conspecific cue,2,4,2,4,3,2,G2
+28,2,14c,Sterilized shell + conspecific cue,3,4,3,4,4,3,G2
+28,2,15e,Sterilized shell + conspecific cue,3,3,3,3,3,3,G2
+28,2,16b,Sterilized shell + conspecific cue,2,4,3,3,3,3,G2
+28,2,17d,Sterilized shell + conspecific cue,6,0,6,0,6,0,G2
+28,2,18b,Sterilized shell + conspecific cue,1,5,2,4,2,4,G2
+28,2,19f,Sterilized shell + conspecific cue,2,4,2,4,2,4,G2
+28,2,20c,Sterilized shell + conspecific cue,2,3,2,3,3,2,G2
+30,2,21e,Sterilized shell + conspecific cue,5,1,5,1,5,1,R1
+30,2,22b,Sterilized shell + conspecific cue,0,6,0,6,0,6,R1
+30,2,23f,Sterilized shell + conspecific cue,0,6,0,6,0,6,R1
+30,2,24c,Sterilized shell + conspecific cue,0,6,1,5,1,5,R1
+30,2,25e,Sterilized shell + conspecific cue,0,6,1,5,1,5,R1
+30,2,26b,Sterilized shell + conspecific cue,0,6,1,4,1,4,R1
+30,2,27d,Sterilized shell + conspecific cue,2,4,2,4,2,4,R1
+30,2,28b,Sterilized shell + conspecific cue,0,6,1,5,1,5,R1
+30,2,29f,Sterilized shell + conspecific cue,0,6,0,6,0,6,R1
+30,2,30c,Sterilized shell + conspecific cue,0,6,2,4,2,4,R1
+35,1,1f,Sterilized shell + conspecific cue + predator cue,0,6,0,6,0,6,G1
+35,1,2c,Sterilized shell + conspecific cue + predator cue,0,6,2,4,1,5,G1
+35,1,3e,Sterilized shell + conspecific cue + predator cue,0,6,2,4,2,4,G1
+35,1,4e,Sterilized shell + conspecific cue + predator cue,0,6,0,6,0,6,G1
+35,1,5c,Sterilized shell + conspecific cue + predator cue,0,6,0,6,0,6,G1
+35,1,7f,Sterilized shell + conspecific cue + predator cue,0,7,0,7,0,7,G1
+35,1,8c,Sterilized shell + conspecific cue + predator cue,0,6,1,5,1,5,G1
+35,1,9e,Sterilized shell + conspecific cue + predator cue,0,6,2,4,2,4,G1
+35,1,10e,Sterilized shell + conspecific cue + predator cue,0,6,1,5,1,5,G1
+28,2,11f,Sterilized shell + conspecific cue + predator cue,2,4,3,3,3,3,G2
+28,2,12c,Sterilized shell + conspecific cue + predator cue,1,5,2,4,2,4,G2
+28,2,13e,Sterilized shell + conspecific cue + predator cue,0,7,2,5,2,5,G2
+28,2,14e,Sterilized shell + conspecific cue + predator cue,1,5,0,6,2,4,G2
+28,2,15c,Sterilized shell + conspecific cue + predator cue,3,3,3,3,3,3,G2
+28,2,16c,Sterilized shell + conspecific cue + predator cue,0,6,3,3,3,3,G2
+28,2,17f,Sterilized shell + conspecific cue + predator cue,0,6,0,6,0,6,G2
+28,2,18c,Sterilized shell + conspecific cue + predator cue,1,5,2,4,2,4,G2
+28,2,19e,Sterilized shell + conspecific cue + predator cue,2,4,2,4,2,4,G2
+28,2,20e,Sterilized shell + conspecific cue + predator cue,0,6,1,4,1,5,G2
+30,2,21f,Sterilized shell + conspecific cue + predator cue,1,5,2,4,2,4,R1
+30,2,22c,Sterilized shell + conspecific cue + predator cue,0,6,0,6,0,5,R1
+30,2,23e,Sterilized shell + conspecific cue + predator cue,0,6,1,5,1,5,R1
+30,2,24e,Sterilized shell + conspecific cue + predator cue,2,3,2,3,2,3,R1
+30,2,25c,Sterilized shell + conspecific cue + predator cue,0,6,0,6,0,6,R1
+30,2,26c,Sterilized shell + conspecific cue + predator cue,1,5,1,5,2,4,R1
+30,2,27f,Sterilized shell + conspecific cue + predator cue,2,4,2,4,3,3,R1
+30,2,28c,Sterilized shell + conspecific cue + predator cue,0,5,0,5,2,3,R1
+30,2,29e,Sterilized shell + conspecific cue + predator cue,1,5,3,3,2,4,R1
+30,2,30e,Sterilized shell + conspecific cue + predator cue,2,4,1,5,2,4,R1
+35,1,1e,Sterilized shell + predator cue,0,6,0,6,1,5,G1
+35,1,2f,Sterilized shell + predator cue,1,5,0,6,0,6,G1
+35,1,3a,Sterilized shell + predator cue,0,6,0,6,0,6,G1
+35,1,4f,Sterilized shell + predator cue,0,6,0,6,0,6,G1
+35,1,5b,Sterilized shell + predator cue,0,6,0,6,0,6,G1
+35,1,6a,Sterilized shell + predator cue,0,6,0,6,0,6,G1
+35,1,7e,Sterilized shell + predator cue,0,6,0,6,0,6,G1
+35,1,8f,Sterilized shell + predator cue,0,6,0,6,0,6,G1
+35,1,9a,Sterilized shell + predator cue,0,7,0,7,0,7,G1
+35,1,10f,Sterilized shell + predator cue,0,6,0,6,0,6,G1
+28,2,11e,Sterilized shell + predator cue,0,6,2,4,2,4,G2
+28,2,12f,Sterilized shell + predator cue,1,5,1,4,0,4,G2
+28,2,13a,Sterilized shell + predator cue,0,5,0,5,0,5,G2
+28,2,14f,Sterilized shell + predator cue,0,6,0,6,0,6,G2
+28,2,15b,Sterilized shell + predator cue,3,3,3,3,2,2,G2
+28,2,16a,Sterilized shell + predator cue,1,4,1,4,1,4,G2
+28,2,17e,Sterilized shell + predator cue,0,6,1,5,1,5,G2
+28,2,18f,Sterilized shell + predator cue,0,6,1,4,2,4,G2
+28,2,19a,Sterilized shell + predator cue,0,6,1,4,1,5,G2
+28,2,20f,Sterilized shell + predator cue,2,4,2,4,2,4,G2
+30,2,21d,Sterilized shell + predator cue,0,6,0,6,0,6,R1
+30,2,22f,Sterilized shell + predator cue,1,5,2,4,2,4,R1
+30,2,23a,Sterilized shell + predator cue,2,4,2,4,2,4,R1
+30,2,24f,Sterilized shell + predator cue,0,6,1,5,1,5,R1
+30,2,25b,Sterilized shell + predator cue,1,5,1,5,0,6,R1
+30,2,26a,Sterilized shell + predator cue,1,5,1,5,2,4,R1
+30,2,27e,Sterilized shell + predator cue,0,5,0,5,1,4,R1
+30,2,28f,Sterilized shell + predator cue,0,6,0,6,0,6,R1
+30,2,29a,Sterilized shell + predator cue,1,5,1,5,1,5,R1
+30,2,30f,Sterilized shell + predator cue,1,5,2,4,2,4,R1
