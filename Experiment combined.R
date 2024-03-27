@@ -3,11 +3,14 @@ install.packages('Matrix')
 install.packages('ggeffects')
 install.packages('DHARMa')
 install.packages("stringr")
+install.packages("dplyr")
+install.packages("ggeffects")
+require(Matrix)
 require(lme4)
 require(ggeffects)
 require(DHARMa)
 require(stringr)
-
+require(dplyr)
 
 #Combining data from MAY and AUG 
 
