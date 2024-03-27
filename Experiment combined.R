@@ -13,7 +13,6 @@ require(stringr)
 
 
 #loading data from May
-setwd("~/GitHub/Conspecific-Predator-Settlement-Cue")
 
 data <- read.csv2(file="Cue interactions 05-2022.csv", sep=",")
 data <- select(data, -settled_10hr, -unattached_10hr, -settled_20hr, -unattached_20hr)

@@ -1,4 +1,13 @@
-setwd("~/GitHub/Conspecific-Predator-Settlement-Cue")
+install.packages('lme4')
+install.packages('Matrix')
+install.packages('ggeffects')
+install.packages('DHARMa')
+install.packages("stringr")
+require(lme4)
+require(ggeffects)
+require(DHARMa)
+require(stringr)
+
 data <- read.csv2(file="Data_pilot.csv", sep=",")
 
 #deleting 10hr, 20hr data 
