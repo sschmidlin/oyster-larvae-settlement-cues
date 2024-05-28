@@ -63,7 +63,7 @@ full_formula <- Settled ~ conspecific_cue + Shell + biofilm + predator_cue +
   conspecific_cue:Shell + biofilm:conspecific_cue + biofilm:predator_cue + biofilm:Shell + Age (1|Batch)
 
 # Define the null model with only random effects
-null_formula <- Settled ~ 1 + (1|Batch)
+null_formula <- Settled ~ 1 + conspecific_cue + predator_cue + Shell + biofilm + (1|Batch) 
 
 # Function to fit a model
 fit_model <- function(formula, data_aug) {
@@ -83,7 +83,7 @@ current_model <- fit_model(current_formula, data_aug)
 best_aic <- calculate_aic(current_model)
 
 # Predictors to consider adding
-predictors_to_add <- c("Age", "conspecific_cue", "Shell", "biofilm", "conspecific_cue:predator_cue", "predator_cue", "Shell:conspecific_cue", "Shell:predator_cue", "biofilm:conspecific_cue", " biofilm:predator_cue", "biofilm:Shell")
+predictors_to_add <- c("Age", "conspecific_cue:predator_cue", "Shell:conspecific_cue", "Shell:predator_cue", "biofilm:conspecific_cue", " biofilm:predator_cue", "biofilm:Shell")
 
 # Iterate through predictors to add
 for (predictor in predictors_to_add) {
@@ -110,12 +110,10 @@ print(aic_values)
 
 ######final model, chosen for the lowest ACI value######### 
 
-model <-glmer(Settled ~ conspecific_cue + predator_cue + Shell + biofilm + conspecific_cue:predator_cue + conspecific_cue:biofilm + Shell:biofilm + biofilm:predator_cue + Age + (1|Batch), data=data_aug, family=binomial)
+model <-glmer(Settled ~ conspecific_cue + Shell + biofilm + conspecific_cue:predator_cue + conspecific_cue:biofilm + Shell:biofilm + Age + (1|Batch), data=data_aug, family=binomial)
 summary(model)
 
 
-model <-glmer(Settled ~ conspecific_cue + Shell + biofilm + conspecific_cue:predator_cue + conspecific_cue:biofilm + Shell:biofilm + biofilm:predator_cue + Age + (1|Batch), data=data_aug, family=binomial)
-summary(model)
 
 #Post Hoc
 emm_interaction <- emmeans(model, ~ conspecific_cue + predator_cue, adjust = "tukey", type = "response")

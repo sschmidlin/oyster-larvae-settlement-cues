@@ -61,7 +61,7 @@ full_formula <- Settled ~ conspecific_cue + predator_cue + Shell +
   conspecific_cue:Shell + Larvae.age + (1|Larvae.batch)
 
 # Define the null model with only random effects
-null_formula <- Settled ~ 1 + (1|Larvae.batch)
+null_formula <- Settled ~ 1 + conspecific_cue + predator_cue + Shell + (1|Larvae.batch)
 
 # Function to fit a model
 fit_model <- function(formula, data) {
@@ -81,7 +81,7 @@ current_model <- fit_model(current_formula, data)
 best_aic <- calculate_aic(current_model)
 
 # Predictors to consider adding
-predictors_to_add <- c("conspecific_cue", "predator_cue", "Shell", "Larvae.age", "conspecific_cue:predator_cue", "Shell:conspecific_cue", "Shell:predator_cue")
+predictors_to_add <- c("Larvae.age", "conspecific_cue:predator_cue", "Shell:conspecific_cue", "Shell:predator_cue")
 
 # Iterate through predictors to add
 for (predictor in predictors_to_add) {

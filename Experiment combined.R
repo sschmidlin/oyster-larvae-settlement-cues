@@ -117,7 +117,7 @@ levels(data_aug_new$Larvae.batch) = c("3", "4")
 data_combined = rbind(data_may_new, data_aug_new)
 data_combined$larvae.batch <- as.factor(data_combined$Larvae.batch)
 
-#excluding all biofilm data 
+#excluding all data with biofilms present as this will cause the model to become unbalanced 
 data_combined <- data_combined[data_combined$biofilm == "Absent",]
 
 
@@ -134,7 +134,7 @@ full_formula <- Settled ~ conspecific_cue + predator_cue + Shell +
   conspecific_cue:Shell + Larvae.age + (1|Larvae.batch)
 
 # Define the null model with only random effects
-null_formula <- Settled ~ 1 + (1|Larvae.batch) 
+null_formula <- Settled ~ 1 + conspecific_cue + predator_cue + Shell +(1|Larvae.batch) 
 
 # Function to fit a model
 fit_model <- function(formula, data_combined) {
@@ -154,7 +154,7 @@ current_model <- fit_model(current_formula, data_combined)
 best_aic <- calculate_aic(current_model)
 
 # Predictors to consider adding
-predictors_to_add <- c("conspecific_cue", "Shell", "predator_cue", "conspecific_cue:predator_cue", "Shell:conspecific_cue", "Shell:predator_cue", "Larvae.age")
+predictors_to_add <- c("conspecific_cue:predator_cue", "Shell:conspecific_cue", "Shell:predator_cue", "Larvae.age")
 
 
 
@@ -183,7 +183,7 @@ print(aic_values)
 
 ######final model, chosen for the lowest ACI value######### 
 
-final_model <-glmer(Settled ~ conspecific_cue + predator_cue + Shell + conspecific_cue:predator_cue + Larvae.age + conspecific_cue:Shell + (1 | Larvae.batch), data = data_combined, family = binomial)
+final_model <-glmer(Settled ~ conspecific_cue + predator_cue + Shell + conspecific_cue:predator_cue + conspecific_cue:Shell + Larvae.age + (1 | Larvae.batch), data = data_combined, family = binomial)
 summary(final_model)
 
 
