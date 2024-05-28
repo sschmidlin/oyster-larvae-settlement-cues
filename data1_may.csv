@@ -1,0 +1,115 @@
+"Larvae.age","Larvae.batch","Tray.Number","Cue","Settled","Unattached"
+33,"1","1a","conspecific shell",2,4
+33,"1","1b","conspecific shell_conspecific cue",6,0
+33,"1","1c","conspecific shell_predator cue",4,2
+33,"1","1d","steralized shell",1,5
+33,"1","1e","steralized shell_conspecific cue",1,4
+33,"1","1f","steralized shell_conspecific cue_predator cue",3,3
+33,"1","2a","steralized shell_predator cue",0,7
+33,"1","2b","conspecific shell_predator cue",4,2
+33,"1","2c","conspecific shell_conspecific cue",4,2
+33,"1","2d","steralized shell",0,6
+33,"1","2e","steralized shell_conspecific cue_predator cue",1,5
+33,"1","2f","steralized shell_predator cue",0,6
+33,"1","3a","steralized shell_conspecific cue",3,3
+33,"1","3b","conspecific shell",1,5
+33,"1","3c","steralized shell_predator cue",0,6
+33,"1","3d","steralized shell_conspecific cue_predator cue",0,6
+33,"1","3e","steralized shell_conspecific cue",2,4
+33,"1","3f","conspecific shell",6,0
+33,"1","4a","conspecific shell_predator cue",4,2
+33,"1","4b","conspecific shell_conspecific cue",6,0
+33,"1","4c","steralized shell",2,4
+33,"1","4d","steralized shell_conspecific cue",3,1
+33,"1","4e","conspecific shell",5,1
+33,"1","4f","conspecific shell_predator cue",4,1
+33,"1","5a","steralized shell",0,6
+33,"1","5c","steralized shell_predator cue",0,6
+33,"1","5d","steralized shell_conspecific cue_predator cue",2,4
+33,"1","5e","conspecific shell_conspecific cue",6,0
+33,"1","5f","conspecific shell",5,1
+33,"1","6a","steralized shell",0,5
+33,"1","6b","steralized shell_predator cue",0,6
+33,"1","6c","steralized shell_conspecific cue_predator cue",0,6
+33,"1","6d","conspecific shell_predator cue",6,0
+33,"1","6e","steralized shell_conspecific cue",1,5
+33,"1","6f","steralized shell_conspecific cue_predator cue",0,6
+33,"1","7a","conspecific shell_predator cue",4,1
+33,"1","7b","conspecific shell",6,0
+33,"1","7c","steralized shell_predator cue",0,6
+33,"1","7d","steralized shell_conspecific cue",0,5
+33,"1","7f","conspecific shell_conspecific cue",6,0
+33,"1","8a","steralized shell_conspecific cue",4,2
+33,"1","8b","steralized shell_conspecific cue_predator cue",0,5
+33,"1","8c","conspecific shell",3,3
+33,"1","8d","conspecific shell_conspecific cue",6,0
+33,"1","8e","steralized shell",0,6
+33,"1","8f","steralized shell_predator cue",0,6
+33,"1","9a","conspecific shell_predator cue",4,2
+33,"1","9b","steralized shell",0,6
+33,"1","9c","steralized shell_conspecific cue_predator cue",0,4
+33,"1","9d","conspecific shell_predator cue",6,0
+33,"1","9e","conspecific shell_conspecific cue",6,0
+33,"1","9f","steralized shell_conspecific cue",2,3
+33,"1","10b","steralized shell_predator cue",1,5
+33,"1","10c","conspecific shell",5,1
+33,"1","10d","steralized shell_conspecific cue_predator cue",0,6
+33,"1","10e","steralized shell_conspecific cue",1,4
+33,"1","10f","steralized shell_predator cue",0,6
+25,"2","11a","conspecific shell_predator cue",2,4
+25,"2","11b","steralized shell",0,6
+25,"2","11c","conspecific shell_conspecific cue",0,6
+25,"2","11d","steralized shell_predator cue",0,6
+25,"2","11e","conspecific shell_conspecific cue",5,1
+25,"2","11f","conspecific shell_predator cue",3,3
+25,"2","12a","conspecific shell",3,3
+25,"2","12b","steralized shell_conspecific cue_predator cue",0,4
+25,"2","12c","steralized shell",1,5
+25,"2","12d","steralized shell_conspecific cue",0,6
+25,"2","12e","steralized shell_conspecific cue",0,6
+25,"2","12f","steralized shell_conspecific cue_predator cue",1,5
+25,"2","13a","steralized shell_predator cue",0,6
+25,"2","13b","conspecific shell",1,5
+25,"2","13c","steralized shell",0,7
+25,"2","13d","conspecific shell_predator cue",2,4
+25,"2","13e","conspecific shell_conspecific cue",4,2
+25,"2","13f","steralized shell_predator cue",0,6
+25,"2","14a","conspecific shell_conspecific cue",5,0
+25,"2","14b","conspecific shell_predator cue",4,2
+25,"2","14c","steralized shell_conspecific cue_predator cue",0,5
+25,"2","14d","steralized shell",0,5
+25,"2","14e","steralized shell_conspecific cue",0,5
+25,"2","14f","conspecific shell",4,2
+25,"2","15b","steralized shell_predator cue",0,6
+25,"2","15c","conspecific shell_predator cue",5,0
+25,"2","15d","conspecific shell",2,4
+25,"2","15e","steralized shell",0,6
+25,"2","15f","conspecific shell_conspecific cue",6,0
+25,"2","16a","steralized shell_conspecific cue",2,4
+25,"2","16b","conspecific shell",2,3
+25,"2","16d","steralized shell_conspecific cue",1,4
+25,"2","16e","steralized shell_predator cue",0,6
+25,"2","16f","conspecific shell_predator cue",0,6
+25,"2","17a","steralized shell",0,6
+25,"2","17b","steralized shell_conspecific cue_predator cue",1,4
+25,"2","17c","conspecific shell_predator cue",5,1
+25,"2","17d","steralized shell_conspecific cue_predator cue",1,4
+25,"2","17e","conspecific shell_conspecific cue",5,1
+25,"2","17f","steralized shell_conspecific cue",0,6
+25,"2","18a","steralized shell_predator cue",0,3
+25,"2","18b","conspecific shell",2,4
+25,"2","18c","steralized shell",0,4
+25,"2","18d","steralized shell",1,4
+25,"2","18e","steralized shell_conspecific cue",1,4
+25,"2","18f","conspecific shell",4,2
+25,"2","19a","steralized shell_conspecific cue_predator cue",0,5
+25,"2","19b","steralized shell_predator cue",0,6
+25,"2","19d","conspecific shell_conspecific cue",4,2
+25,"2","19e","steralized shell_predator cue",0,6
+25,"2","19f","steralized shell_conspecific cue_predator cue",1,5
+25,"2","20a","steralized shell",0,6
+25,"2","20b","conspecific shell_conspecific cue",4,2
+25,"2","20c","conspecific shell",4,2
+25,"2","20d","steralized shell_conspecific cue",0,6
+25,"2","20e","conspecific shell_predator cue",3,3
+25,"2","20f","conspecific shell_conspecific cue",5,1

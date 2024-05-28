@@ -1,16 +1,18 @@
-install.packages('lme4')
-install.packages('Matrix')
-install.packages('ggeffects')
-install.packages('DHARMa')
-install.packages("stringr")
+#install.packages('lme4')
+#install.packages('Matrix')
+#install.packages('ggeffects')
+#install.packages('DHARMa')
+#install.packages("stringr")
 install.packages("dplyr")
-install.packages("ggeffects")
+#install.packages("ggeffects")
+#install.packages("emmeans")
 require(Matrix)
 require(lme4)
 require(ggeffects)
 require(DHARMa)
 require(stringr)
 require(dplyr)
+require(emmeans)
 
 #Combining data from MAY and AUG 
 
@@ -47,6 +49,7 @@ data$predator_cue <-sub("FALSE", "Absent", data$predator_cue)
 data$conspecific_cue <-sub("TRUE", "Present", data$conspecific_cue)
 data$conspecific_cue <-sub("FALSE", "Absent", data$conspecific_cue)
 
+
 #adding data from august
 data_aug <- read.csv2(file="Cue interactions 08-2022.csv", sep=",")
 colnames(data_aug)[4] <- 'Well_Number'
@@ -77,8 +80,8 @@ data_aug$Shell <- ifelse(grepl("conspecific shell", data_aug$Shell), TRUE, FALSE
 data_aug$conspecific_cue <- ifelse(grepl("conspecific cue", data_aug$conspecific_cue), TRUE, FALSE)
 data_aug$predator_cue <- ifelse(grepl("predator cue", data_aug$predator_cue), TRUE, FALSE)
 data_aug$biofilm <- ifelse(grepl("biofilm", data_aug$biofilm), TRUE, FALSE)
-data_aug$biofilm <-sub("TRUE", "biofilm_present", data_aug$biofilm)
-data_aug$biofilm <-sub("FALSE", "biofilm_absent", data_aug$biofilm)
+data_aug$biofilm <-sub("TRUE", "Present", data_aug$biofilm)
+data_aug$biofilm <-sub("FALSE", "Absent", data_aug$biofilm)
 data_aug$Shell <-sub("TRUE", "Untreated", data_aug$Shell)
 data_aug$Shell <-sub("FALSE", "Sterilized", data_aug$Shell)
 data_aug$predator_cue <-sub("TRUE", "Present", data_aug$predator_cue)
@@ -106,12 +109,302 @@ data_aug_new$Larvae.batch = as.factor(data_aug_new$Larvae.batch)
 exp = rep("aug", nrow(data_aug_new))
 data_aug_new = cbind(data_aug_new, exp)
 
-biofilm = rep("absent", nrow(data))
+biofilm = rep("Absent", nrow(data))
 data_may_new = cbind(data, biofilm)
 exp = rep("may", nrow(data_may_new))
 data_may_new = cbind(data_may_new, exp)
 levels(data_aug_new$Larvae.batch) = c("3", "4")
 data_combined = rbind(data_may_new, data_aug_new)
+data_combined$larvae.batch <- as.factor(data_combined$Larvae.batch)
+
+#excluding all biofilm data 
+data_combined <- data_combined[data_combined$biofilm == "Absent",]
+
+
+#############################
+##  creating glmer models  ##
+#############################
+
+###Forward selection, compare model ACI values adding all possible main effects## 
+
+
+# Define the full formula with all potential main effects and interactions
+full_formula <- Settled ~ conspecific_cue + predator_cue + Shell + 
+  conspecific_cue:predator_cue + predator_cue:Shell + 
+  conspecific_cue:Shell + Larvae.age + (1|Larvae.batch)
+
+# Define the null model with only random effects
+null_formula <- Settled ~ 1 + (1|Larvae.batch) 
+
+# Function to fit a model
+fit_model <- function(formula, data_combined) {
+  model <- glmer(formula, data = data_combined, family = binomial)
+  return(model)
+}
+
+# Function to calculate AIC
+calculate_aic <- function(model) {
+  return(AIC(model))
+}
+
+# Initialize variables
+aic_values <- data.frame(Model = character(), AIC = numeric())
+current_formula <- null_formula
+current_model <- fit_model(current_formula, data_combined)
+best_aic <- calculate_aic(current_model)
+
+# Predictors to consider adding
+predictors_to_add <- c("conspecific_cue", "Shell", "predator_cue", "conspecific_cue:predator_cue", "Shell:conspecific_cue", "Shell:predator_cue", "Larvae.age")
+
+
+
+# Iterate through predictors to add
+for (predictor in predictors_to_add) {
+  # Add the predictor
+  new_formula <- update(current_formula, as.formula(paste(". ~ . + ", predictor)))
+  new_model <- fit_model(new_formula, data_combined)
+  new_aic <- calculate_aic(new_model)
+  
+  # Store AIC values in the dataframe
+  aic_values <- rbind(aic_values, data.frame(Model = as.character(new_formula), AIC = new_aic))
+  
+  # Compare AIC values
+  if (new_aic < best_aic) {
+    current_formula <- new_formula
+    current_model <- new_model
+    best_aic <- new_aic
+  }
+}
+
+
+# Print dataframe with AIC values
+print(aic_values)
+
+
+######final model, chosen for the lowest ACI value######### 
+
+final_model <-glmer(Settled ~ conspecific_cue + predator_cue + Shell + conspecific_cue:predator_cue + Larvae.age + conspecific_cue:Shell + (1 | Larvae.batch), data = data_combined, family = binomial)
+summary(final_model)
+
+
+
+#Post Hoc
+emm_interaction1 <- emmeans(final_model, ~ conspecific_cue + predator_cue,  adjust = "tukey", type = "response")
+emm_interaction2 <- emmeans(final_model, ~ Shell + predator_cue, adjust = "tukey", type = "response")
+emm_interaction3 <- emmeans(final_model, ~ Shell + conspecific_cue, adjust = "tukey", type = "response")
+
+
+# Perform pairwise comparisons between the levels of the interaction
+pairs(emm_interaction1)
+pairs(emm_interaction2)
+pairs(emm_interaction3)
+
+
+#visuals
+m<-ggpredict(final_model, terms = c('conspecific_cue', 'predator_cue'))
+plot(m)
+
+m1 <-ggpredict(final_model, terms = c('Shell','predator_cue'))
+plot(m1)
+
+m2<-ggpredict(final_model, terms = c('Shell', 'conspecific_cue'))
+plot(m2)
+
+
+#visuals 
+plot(m) + 
+  labs(x = 'Conspecific Cue (waterbourne)', 
+       y= 'Larvae Settled (%)',
+       title = "") +
+  guides(color = guide_legend(title = "Predator Cue")) + 
+  scale_color_manual(values = c("dodgerblue3", "orangered4"))+
+  theme(axis.text = element_text(size = 12), axis.title = element_text(size = 12))+
+  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))
+
+
+plot(m1) + 
+  labs(x = 'Conspecific Shell', 
+       y= 'Larvae Settled (%)',
+       title = "") +
+  guides(color = guide_legend(title = "Predator Cue")) + 
+  scale_color_manual(values = c("Khaki2", "orangered4"))+
+  theme(axis.text = element_text(size = 12), axis.title = element_text(size = 12))+
+  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))
+
+
+plot(m2) + 
+  labs(x = 'Conspecific Shell', 
+       y= 'Larvae Settled (%)',
+       title = "") +
+  guides(color = guide_legend(title = "Conspecific Cue (waterbourne)")) + 
+  scale_color_manual(values = c("Khaki2","dodgerblue3"))+
+  theme(axis.text = element_text(size = 12), axis.title = element_text(size = 12))+
+  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))
+
+
+
+
+
+
+
+
+
+
+
+
+########OLD CODE DO NOT RUN########################################
+
+
+
+###Forward selection, compare model ACI values adding all possible main effects## 
+
+
+# Define the full formula with all potential main effects and interactions
+full_formula <- Settled ~ conspecific_cue + predator_cue + Shell + 
+  conspecific_cue:predator_cue + predator_cue:Shell + 
+  conspecific_cue:Shell + biofilm + Larvae.age + (1|Larvae.batch)
+
+# Define the null model with only random effects
+null_formula <- Settled ~ 1 + (1|Larvae.batch) 
+
+# Function to fit a model
+fit_model <- function(formula, data_combined) {
+  model <- glmer(formula, data = data_combined, family = binomial)
+  return(model)
+}
+
+# Function to calculate AIC
+calculate_aic <- function(model) {
+  return(AIC(model))
+}
+
+# Initialize variables
+aic_values <- data.frame(Model = character(), AIC = numeric())
+current_formula <- null_formula
+current_model <- fit_model(current_formula, data_combined)
+best_aic <- calculate_aic(current_model)
+
+# Predictors to consider adding
+predictors_to_add <- c("conspecific_cue", "Shell", "predator_cue", "biofilm", "conspecific_cue:predator_cue", "Shell:conspecific_cue", "Shell:predator_cue", "Larvae.age")
+
+
+
+# Iterate through predictors to add
+for (predictor in predictors_to_add) {
+  # Add the predictor
+  new_formula <- update(current_formula, as.formula(paste(". ~ . + ", predictor)))
+  new_model <- fit_model(new_formula, data_combined)
+  new_aic <- calculate_aic(new_model)
+  
+  # Store AIC values in the dataframe
+  aic_values <- rbind(aic_values, data.frame(Model = as.character(new_formula), AIC = new_aic))
+  
+  # Compare AIC values
+  if (new_aic < best_aic) {
+    current_formula <- new_formula
+    current_model <- new_model
+    best_aic <- new_aic
+  }
+}
+
+
+# Print dataframe with AIC values
+print(aic_values)
+
+
+
+
+######final model, chosen for the lowest ACI value######### 
+
+final_model <-glmer(Settled ~ conspecific_cue + predator_cue + Shell + conspecific_cue:predator_cue + Larvae.age + biofilm + (1 | Larvae.batch), data = data_combined, family = binomial)
+summary(final_model)
+
+
+
+#Post Hoc
+emm_interaction1 <- emmeans(final_model, ~ conspecific_cue + predator_cue,  adjust = "tukey", type = "response")
+emm_interaction2 <- emmeans(final_model, ~ Shell + predator_cue, adjust = "tukey", type = "response")
+emm_interaction3 <- emmeans(final_model, ~ Shell + conspecific_cue, adjust = "tukey", type = "response")
+
+
+# Perform pairwise comparisons between the levels of the interaction
+pairs(emm_interaction1)
+pairs(emm_interaction2)
+pairs(emm_interaction3)
+
+
+#visuals
+m<-ggpredict(final_model, terms = c('conspecific_cue', 'predator_cue'))
+plot(m)
+
+m1 <-ggpredict(final_model, terms = c('Shell','predator_cue'))
+plot(m1)
+
+m2<-ggpredict(final_model, terms = c('Shell', 'conspecific_cue'))
+plot(m2)
+
+
+#visuals 
+plot(m) + 
+  labs(x = 'Conspecific Cue (waterbourne)', 
+       y= 'Larvae Settled (%)',
+       title = "") +
+  guides(color = guide_legend(title = "Predator Cue")) + 
+  scale_color_manual(values = c("dodgerblue3", "orangered4"))+
+  theme(axis.text = element_text(size = 12), axis.title = element_text(size = 12))+
+  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))
+
+
+plot(m1) + 
+  labs(x = 'Conspecific Shell', 
+       y= 'Larvae Settled (%)',
+       title = "") +
+  guides(color = guide_legend(title = "Predator Cue")) + 
+  scale_color_manual(values = c("Khaki2", "orangered4"))+
+  theme(axis.text = element_text(size = 12), axis.title = element_text(size = 12))+
+  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))
+
+
+plot(m2) + 
+  labs(x = 'Conspecific Shell', 
+       y= 'Larvae Settled (%)',
+       title = "") +
+  guides(color = guide_legend(title = "Conspecific Cue (waterbourne)")) + 
+  scale_color_manual(values = c("Khaki2","dodgerblue3"))+
+  theme(axis.text = element_text(size = 12), axis.title = element_text(size = 12))+
+  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##########################OLD CODE DONT RUN###############################################
 
 # combined model
 model <-glmer(Settled ~ conspecific_cue + predator_cue + conspecific_cue:predator_cue + (1|Shell) + (1 | biofilm) + (1 | Larvae.batch), data = data_combined, family = binomial)
