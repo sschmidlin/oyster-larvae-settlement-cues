@@ -110,7 +110,7 @@ print(aic_values)
 
 ######final model, chosen for the lowest ACI value######### 
 
-model <-glmer(Settled ~ conspecific_cue + Shell + biofilm + conspecific_cue:predator_cue + conspecific_cue:biofilm + Shell:biofilm + Age + (1|Batch), data=data_aug, family=binomial)
+model <-glmer(Settled ~ conspecific_cue + Shell + biofilm + predator_cue + conspecific_cue:predator_cue + conspecific_cue:biofilm + Shell:biofilm + Age + (1|Batch), data=data_aug, family=binomial)
 summary(model)
 
 

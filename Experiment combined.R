@@ -117,9 +117,6 @@ levels(data_aug_new$Larvae.batch) = c("3", "4")
 data_combined = rbind(data_may_new, data_aug_new)
 data_combined$larvae.batch <- as.factor(data_combined$Larvae.batch)
 
-#excluding all data with biofilms present as this will cause the model to become unbalanced 
-data_combined <- data_combined[data_combined$biofilm == "Absent",]
-
 
 #############################
 ##  creating glmer models  ##
@@ -131,10 +128,10 @@ data_combined <- data_combined[data_combined$biofilm == "Absent",]
 # Define the full formula with all potential main effects and interactions
 full_formula <- Settled ~ conspecific_cue + predator_cue + Shell + 
   conspecific_cue:predator_cue + predator_cue:Shell + 
-  conspecific_cue:Shell + Larvae.age + (1|Larvae.batch)
+  conspecific_cue:Shell + Larvae.age + (1|Larvae.batch) + (1|biofilm)
 
 # Define the null model with only random effects
-null_formula <- Settled ~ 1 + conspecific_cue + predator_cue + Shell +(1|Larvae.batch) 
+null_formula <- Settled ~ 1 + conspecific_cue + predator_cue + Shell +(1|Larvae.batch) + (1|biofilm)
 
 # Function to fit a model
 fit_model <- function(formula, data_combined) {
@@ -183,10 +180,8 @@ print(aic_values)
 
 ######final model, chosen for the lowest ACI value######### 
 
-final_model <-glmer(Settled ~ conspecific_cue + predator_cue + Shell + conspecific_cue:predator_cue + conspecific_cue:Shell + Larvae.age + (1 | Larvae.batch), data = data_combined, family = binomial)
+final_model <-glmer(Settled ~ conspecific_cue + predator_cue + Shell + conspecific_cue:predator_cue + Larvae.age + (1 | Larvae.batch) + (1|biofilm), data = data_combined, family = binomial)
 summary(final_model)
-
-
 
 #Post Hoc
 emm_interaction1 <- emmeans(final_model, ~ conspecific_cue + predator_cue,  adjust = "tukey", type = "response")

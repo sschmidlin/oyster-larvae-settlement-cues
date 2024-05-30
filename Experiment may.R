@@ -5,12 +5,14 @@ install.packages('DHARMa')
 install.packages("stringr")
 install.packages("dplyr")
 install.packages("ggeffects")
+install.packages("emmeans")
 require(Matrix)
 require(lme4)
 require(ggeffects)
 require(DHARMa)
 require(stringr)
 require(dplyr)
+require(emmeans)
 
 
 #loading data from May
@@ -42,10 +44,10 @@ data$predator_cue <- ifelse(grepl("predator cue", data$predator_cue), TRUE, FALS
 data$Shell <-sub("TRUE", "Untreated", data$Shell)
 data$Shell <-sub("FALSE", "Sterilized", data$Shell)
 
-data$predator_cue <-sub("TRUE", "Present_pred", data$predator_cue)
-data$predator_cue <-sub("FALSE", "Absent_pred", data$predator_cue)
-data$conspecific_cue <-sub("TRUE", "Present_con", data$conspecific_cue)
-data$conspecific_cue <-sub("FALSE", "Absent_con", data$conspecific_cue)
+data$predator_cue <-sub("TRUE", "Present", data$predator_cue)
+data$predator_cue <-sub("FALSE", "Absent", data$predator_cue)
+data$conspecific_cue <-sub("TRUE", "Present", data$conspecific_cue)
+data$conspecific_cue <-sub("FALSE", "Absent", data$conspecific_cue)
 
 
 
