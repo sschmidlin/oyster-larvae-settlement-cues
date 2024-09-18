@@ -238,7 +238,7 @@ plot(m2) +
 
 
 #####################################################
-#########CREATING PLOTS FOR PUBLICATION##############
+#########CREATING IMAGE FOR PUBLICATION##############
 #####################################################
 
 #Adding experiment from May so that plots can be combined##################
@@ -283,37 +283,6 @@ m3<-ggpredict(model1, terms = c('conspecific_cue', 'predator_cue'))
 m4<-ggpredict(model1, terms = c('Shell','predator_cue'))
 
 m5<-ggpredict(model1, terms = c('Shell', 'conspecific_cue'))
-
-
-#visuals 
-plot(m3) + 
-  labs(x = 'Conspecific Cue (waterbourne)', 
-       y= 'Larvae Settled (%)',
-       title = "") +
-  guides(color = guide_legend(title = "Predator Cue")) + 
-  scale_color_manual(values = c("dodgerblue3", "orangered4"))+
-  theme(axis.text = element_text(size = 12), axis.title = element_text(size = 12))+
-  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))
-
-
-plot(m4) + 
-  labs(x = 'Conspecific Shell', 
-       y= 'Larvae Settled (%)',
-       title = "") +
-  guides(color = guide_legend(title = "Predator Cue")) + 
-  scale_color_manual(values = c("Khaki2", "orangered4"))+
-  theme(axis.text = element_text(size = 12), axis.title = element_text(size = 12))+
-  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))
-
-
-plot(m5) + 
-  labs(x = 'Conspecific Shell', 
-       y= 'Larvae Settled (%)',
-       title = "") +
-  guides(color = guide_legend(title = "Conspecific Cue (waterbourne)")) + 
-  scale_color_manual(values = c("Khaki2","dodgerblue3"))+
-  theme(axis.text = element_text(size = 12), axis.title = element_text(size = 12))+
-  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))
 
 
 
@@ -377,64 +346,6 @@ m10<-ggpredict(model_aug, terms = c('Shell', 'predator_cue'))
 m11<-ggpredict(model_aug, terms = c('Shell', 'biofilm'))
 
 
-#visuals 
-plot(m6) + 
-  labs(x = 'Conspecific Cue (waterbourne)', 
-       y= 'Larvae Settled (%)',
-       title = "") +
-  guides(color = guide_legend(title = "Predator Cue")) + 
-  scale_color_manual(values = c("dodgerblue3", "orangered4"))+
-  theme(axis.text = element_text(size = 12), axis.title = element_text(size = 12))+
-  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))+
-  geom_errorbar(data = pairwise_emm, aes(x = conspecific_cue, ymin = lower.CL, ymax = upper.CL, color = predator_cue), width = 0.2, position = position_dodge(width = 0.2))
-
-
-plot(m7) + 
-  labs(x = 'Conspecific Cue (waterbourne)', 
-       y= 'Larvae Settled (%)',
-       title = "") +
-  guides(color = guide_legend(title = "Biofilm")) + 
-  scale_color_manual(values = c("dodgerblue3", "chartreuse4"))+
-  theme(axis.text = element_text(size = 12), axis.title = element_text(size = 12))+
-  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))
-
-
-plot(m8) + 
-  labs(x = 'Conspecific Shell', 
-       y= 'Larvae Settled (%)',
-       title = "") +
-  guides(color = guide_legend(title = "Conspecific Cue (waterbourne)")) + 
-  scale_color_manual(values = c("Khaki2","dodgerblue3"))+
-  theme(axis.text = element_text(size = 12), axis.title = element_text(size = 12))+
-  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))
-
-plot(m9) + 
-  labs(x = 'Biofilm', 
-       y= 'Larvae Settled (%)',
-       title = "") +
-  guides(color = guide_legend(title = "Predator Cue")) + 
-  scale_color_manual(values = c("chartreuse4", "orangered4"))+
-  theme(axis.text = element_text(size = 12), axis.title = element_text(size = 12))+
-  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))
-
-plot(m10) + 
-  labs(x = 'Conspecific Shell', 
-       y= 'Larvae Settled (%)',
-       title = "") +
-  guides(color = guide_legend(title = "Predator Cue")) + 
-  scale_color_manual(values = c("Khaki2","orangered4"))+
-  theme(axis.text = element_text(size = 12), axis.title = element_text(size = 12))+
-  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))
-
-plot(m11) + 
-  labs(x = 'Conspecific Shell', 
-       y= 'Larvae Settled (%)',
-       title = "") +
-  guides(color = guide_legend(title = "Biofilm")) + 
-  scale_color_manual(values = c("Khaki2","chartreuse4"))+
-  theme(axis.text = element_text(size = 12), axis.title = element_text(size = 12))+
-  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))
-
 
 
 ### making one image ############################
@@ -473,7 +384,7 @@ plot_m2 <- plot(m2) +
 
 plot_m3 <- plot(m3) + 
   labs(x = 'Conspecific Cue (waterbourne)', 
-       y= 'Larvae Settled (%)',
+       y= '',
        title = "") +
   guides(color = guide_legend(title = "Predator Cue")) + 
   scale_color_manual(values = c("dodgerblue3", "orangered4"))+
@@ -482,7 +393,7 @@ plot_m3 <- plot(m3) +
 
 plot_m4 <- plot(m4) + 
   labs(x = 'Conspecific Shell', 
-       y= 'Larvae Settled (%)',
+       y= '',
        title = "") +
   guides(color = guide_legend(title = "Predator Cue")) + 
   scale_color_manual(values = c("Khaki2", "orangered4"))+
@@ -491,7 +402,7 @@ plot_m4 <- plot(m4) +
 
 plot_m5 <- plot(m5) + 
   labs(x = 'Conspecific Shell', 
-       y= 'Larvae Settled (%)',
+       y= '',
        title = "") +
   guides(color = guide_legend(title = "Conspecific Cue (waterbourne)")) + 
   scale_color_manual(values = c("Khaki2","dodgerblue3"))+
@@ -500,7 +411,7 @@ plot_m5 <- plot(m5) +
 
 plot_m6 <- plot(m6) + 
   labs(x = 'Conspecific Cue (waterbourne)', 
-       y= 'Larvae Settled (%)',
+       y= '',
        title = "") +
   guides(color = guide_legend(title = "Predator Cue")) + 
   scale_color_manual(values = c("dodgerblue3", "orangered4"))+
@@ -519,7 +430,7 @@ plot_m7 <- plot(m7) +
 
 plot_m8 <- plot(m8) + 
   labs(x = 'Conspecific Shell', 
-       y= 'Larvae Settled (%)',
+       y= '',
        title = "") +
   guides(color = guide_legend(title = "Conspecific Cue (waterbourne)")) + 
   scale_color_manual(values = c("Khaki2","dodgerblue3"))+
@@ -528,7 +439,7 @@ plot_m8 <- plot(m8) +
 
 plot_m9 <- plot(m9) + 
   labs(x = 'Biofilm', 
-       y= 'Larvae Settled (%)',
+       y= '',
        title = "") +
   guides(color = guide_legend(title = "Predator Cue")) + 
   scale_color_manual(values = c("chartreuse4", "orangered4"))+
@@ -537,7 +448,7 @@ plot_m9 <- plot(m9) +
 
 plot_m10 <- plot(m10) + 
   labs(x = 'Conspecific Shell', 
-       y= 'Larvae Settled (%)',
+       y= '',
        title = "") +
   guides(color = guide_legend(title = "Predator Cue")) + 
   scale_color_manual(values = c("Khaki2","orangered4"))+
@@ -546,7 +457,7 @@ plot_m10 <- plot(m10) +
 
 plot_m11 <- plot(m11) + 
   labs(x = 'Conspecific Shell', 
-       y= 'Larvae Settled (%)',
+       y= '',
        title = "") +
   guides(color = guide_legend(title = "Biofilm")) + 
   scale_color_manual(values = c("Khaki2","chartreuse4"))+
