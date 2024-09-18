@@ -245,7 +245,7 @@ plot(m2) +
 
 
 data1 <- read.csv2(file="Cue interactions 05-2022.csv", sep=",")
-data1 <- select(data, -settled_10hr, -unattached_10hr, -settled_20hr, -unattached_20hr)
+data1 <- select(data1, -settled_10hr, -unattached_10hr, -settled_20hr, -unattached_20hr)
 colnames(data1)[5] <- 'Settled'
 colnames(data1)[6] <- 'Unattached'
 data1$Larvae.batch = as.factor(data1$Larvae.batch)
@@ -553,17 +553,23 @@ plot_m11 <- plot(m11) +
   theme(axis.text = element_text(size = 12), axis.title = element_text(size = 12))+
   scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))
 
+labels <- c("1A", "1B", "1C", "2A", "2B", "2C", "3A", "3B", "3C", "4A", "4B", "4C")
+
 # List of ggplot objects
 plot_list <- list(
-  plot_m, plot_m1, plot_m2,
-  plot_m3, plot_m4, plot_m5,
-  plot_m6, plot_m7, plot_m8,
-  plot_m9, plot_m10, plot_m11
+  plot_m, plot_m3, plot_m6,
+  plot_m1, plot_m4, plot_m10,
+  plot_m2, plot_m5, plot_m8,
+  plot_m7, plot_m11, plot_m9
 )
+
+labeled_plots <- mapply(function(p, label) {
+  arrangeGrob(p, bottom = textGrob(label, gp = gpar(fontsize = 10, fontface = "bold")))
+}, plot_list, labels, SIMPLIFY = FALSE)
 
 # Arrange the plots in a 4x3 grid
 grid.arrange(
-  grobs = plot_list,
+  grobs = labeled_plots,
   nrow = 4,
   ncol = 3
 )
@@ -573,8 +579,8 @@ grid.arrange(
 
 
 
-
-########OLD CODE DO NOT RUN########################################
+########OLD CODE DO NOT RUN###################################################################################################################################
+###############################################################################################################################################################
 
 
 
