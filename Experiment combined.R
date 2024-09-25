@@ -13,6 +13,7 @@ require(DHARMa)
 require(stringr)
 require(dplyr)
 require(emmeans)
+require(ggplot2)
 
 #Combining data from MAY and AUG 
 
