@@ -16,6 +16,12 @@ data <- read.csv2(file="Data_pilot.csv", sep=",")
 
 #deleting 10hr, 20hr data 
 data <- select(data, -settled_10hrs, -unattached_10hrs, -settled_20hrs, -unattached_20hrs)
+
+#deleting 10hrs, 30hr data
+data20 <- select(data, -settled_10hrs, -unattached_10hrs, -settled_30hrs, -unattached_30hrs)
+#deleting 20hrs, 30hr data
+data10 <- select(data, -settled_30hrs, -unattached_30hrs, -settled_20hrs, -unattached_20hrs)
+
 colnames(data)[5] <- 'Settled'
 colnames(data)[6] <- 'Unattached'
 

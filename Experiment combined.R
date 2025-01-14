@@ -285,7 +285,9 @@ m4<-ggpredict(model1, terms = c('Shell','predator_cue'))
 
 m5<-ggpredict(model1, terms = c('Shell', 'conspecific_cue'))
 
-
+plot(m3)
+plot(m4)
+plot(m5)
 
 ####adding august experiment so plots can be combined##########################
 
@@ -338,7 +340,7 @@ m7<-ggpredict(model_aug, terms = c('conspecific_cue', 'biofilm'))
 m8<-ggpredict(model_aug, terms = c('Shell', 'conspecific_cue'))
 
 
-m9<-ggpredict(model_aug, terms = c('biofilm','predator_cue'))
+m9<-ggpredict(model_aug, terms = c('predator_cue', 'biofilm'))
 
 
 m10<-ggpredict(model_aug, terms = c('Shell', 'predator_cue'))
@@ -347,9 +349,334 @@ m10<-ggpredict(model_aug, terms = c('Shell', 'predator_cue'))
 m11<-ggpredict(model_aug, terms = c('Shell', 'biofilm'))
 
 
-
-
 ### making one image ############################
+#install.packages("grid")
+#install.packages("gridExtra")
+library(grid)
+library(gridExtra)
+
+
+# Convert your ggeffects objects into ggplot objects
+plot_m <- plot(m, connect.lines = T) +
+  labs(x = 'Conspecific Cue (waterbourne)',
+       y= ' ',
+       title = "") +
+  theme(legend.position = "none") +
+  guides(color = guide_legend(title = "Predator Cue")) +
+  scale_color_manual(values = c("Khaki2", "orangered4"))+
+  theme(axis.text = element_text(size = 8), axis.title = element_text(size = 10))+
+  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))+
+  annotate("text", x = .94, y = 0.3, label = "A", size = 4, color = "black") +  
+  annotate("text", x = 1.06, y = 0.3, label = "A", size = 4, color = "black") +  
+  annotate("text", x = 1.94, y = 0.6, label = "B", size = 4, color = "black") +   
+  annotate("text", x = 2.06, y = 0.5, label = "C", size = 4, color = "black") +
+  annotate("text", x = -Inf, y = Inf, label = "C", hjust = -1, vjust = 1, size = 6, fontface = "bold")
+
+
+plot(plot_m)
+
+plot_m1 <- plot(m1, connect.lines = T) +
+  labs(x = 'Conspecific Shell',
+       y= ' ',
+       title = "") +
+  theme(legend.position = "none") +
+  guides(color = guide_legend(title = "Predator Cue")) +
+  scale_color_manual(values = c("Khaki2", "orangered4"))+
+  theme(axis.text = element_text(size = 8), axis.title = element_text(size = 10))+
+  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1)) +
+  annotate("text", x = .94, y = 0.3, label = "A", size = 4, color = "black") + 
+  annotate("text", x = 1.06, y = 0.3, label = "A", size = 4, color = "black") +  
+  annotate("text", x = 1.94, y = 0.8, label = "B", size = 4, color = "black") +   
+  annotate("text", x = 2.06, y = 0.8, label = "B", size = 4, color = "black") +
+  annotate("text", x = -Inf, y = Inf, label = "F", hjust = -1, vjust = 1, size = 6, fontface = "bold")
+
+
+
+plot(plot_m1)
+
+plot_m2 <- plot(m2, connect.lines = T) +
+  labs(x = 'Conspecific Shell',
+       y= ' ',
+       title = "") +
+  theme(legend.position = "none") +
+  guides(color = guide_legend(title = "Conspecific Cue (waterbourne)")) +
+  scale_color_manual(values = c("darkorange","dodgerblue3"))+
+  theme(axis.text = element_text(size = 8), axis.title = element_text(size = 10))+
+  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))+
+  annotate("text", x = .94, y = 0.25, label = "A", size = 4, color = "black") +
+  annotate("text", x = 1.06, y = 0.55, label = "B", size = 4, color = "black") +
+  annotate("text", x = 1.94, y = 0.75, label = "C", size = 4, color = "black") +
+  annotate("text", x = 2.06, y = 0.99, label = "D", size = 4, color = "black")+
+  annotate("text", x = -Inf, y = Inf, label = "I", hjust = -1, vjust = 1, size = 6, fontface = "bold")
+
+
+plot(plot_m2)
+
+plot_m3 <- plot(m3, connect.lines = T) +
+  labs(x = 'Conspecific Cue (waterbourne)',
+       y= 'Larvae Settled (%)',
+       title = "") +
+  theme(legend.position = "none") +
+  guides(color = guide_legend(title = "Predator Cue")) +
+  scale_color_manual(values = c("Khaki2", "orangered4"))+
+  theme(axis.text = element_text(size = 8), axis.title = element_text(size = 10))+
+  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))+
+  annotate("text", x = .94, y = 0.25, label = "A", size = 4, color = "black") +
+  annotate("text", x = 1.06, y = 0.25, label = "A", size = 4, color = "black") +
+  annotate("text", x = 1.94, y = 0.5, label = "B", size = 4, color = "black") +
+  annotate("text", x = 2.06, y = 0.45, label = "AB", size = 4, color = "black")+
+  annotate("text", x = -Inf, y = Inf, label = "A", hjust = -1, vjust = 1, size = 6, fontface = "bold")
+
+
+plot(plot_m3)
+
+plot_m4 <- plot(m4, connect.lines = T) +
+  labs(x = 'Conspecific Shell',
+       y= 'Larvae Settled (%)',
+       title = "") +
+  guides(color = guide_legend(title = "Predator Cue")) +
+  theme(legend.position = "none") +
+  scale_color_manual(values = c("Khaki2", "orangered4"))+
+  theme(axis.text = element_text(size = 8), axis.title = element_text(size = 10))+
+  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))+
+  annotate("text", x = .94, y = 0.25, label = "A", size = 4, color = "black") +
+  annotate("text", x = 1.06, y = 0.2, label = "B", size = 4, color = "black") +
+  annotate("text", x = 1.94, y = 0.9, label = "C", size = 4, color = "black") +
+  annotate("text", x = 2.06, y = 0.9, label = "C", size = 4, color = "black")+
+  annotate("text", x = -Inf, y = Inf, label = "D", hjust = -1, vjust = 1, size = 6, fontface = "bold")
+
+
+plot(plot_m4)
+
+plot_m5 <- plot(m5, connect.lines = T) +
+  labs(x = 'Conspecific Shell',
+       y= 'Larvae Settled (%)',
+       title = "") +
+  guides(color = guide_legend(title = "Conspecific Cue (waterbourne)")) +
+  theme(legend.position = "none") +
+  scale_color_manual(values = c("darkorange","dodgerblue3"))+
+  theme(axis.text = element_text(size = 8), axis.title = element_text(size = 10))+
+  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))+
+  annotate("text", x = .94, y = 0.3, label = "A", size = 4, color = "black") +
+  annotate("text", x = 1.06, y = 0.5, label = "B", size = 4, color = "black") +
+  annotate("text", x = 1.94, y = 0.89, label = "C", size = 4, color = "black") +
+  annotate("text", x = 2.06, y = 0.99, label = "D", size = 4, color = "black")+
+  annotate("text", x = -Inf, y = Inf, label = "G", hjust = -1, vjust = 1, size = 6, fontface = "bold")
+
+
+plot(plot_m5)
+
+plot_m6 <- plot(m6, connect.lines = T) +
+  labs(x = 'Conspecific Cue (waterbourne)',
+       y= '',
+       title = "") +
+  guides(color = guide_legend(title = "Predator Cue")) +
+  theme(legend.position = "none") +
+  scale_color_manual(values = c("Khaki2", "orangered4"))+
+  theme(axis.text = element_text(size = 8), axis.title = element_text(size = 10))+
+  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))+
+  annotate("text", x = .94, y = 0.2, label = "A", size = 4, color = "black") +
+  annotate("text", x = 1.06, y = 0.2, label = "A", size = 4, color = "black") +
+  annotate("text", x = 1.94, y = 0.5, label = "B", size = 4, color = "black") +
+  annotate("text", x = 2.06, y = 0.45, label = "B", size = 4, color = "black")+
+  annotate("text", x = -Inf, y = Inf, label = "B", hjust = -1, vjust = 1, size = 6, fontface = "bold")
+
+
+plot(plot_m6)
+
+plot_m7 <- plot(m7, connect.lines = T) +
+  labs(x = 'Conspecific Cue (waterbourne)',
+       y= 'Larvae Settled (%)',
+       title = "") +
+  guides(color = guide_legend(title = "Biofilm")) +
+  theme(legend.position = "none") +
+  scale_color_manual(values = c("midnightblue", "chartreuse4"))+
+  theme(axis.text = element_text(size = 8), axis.title = element_text(size = 10))+
+  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))+
+  annotate("text", x = .94, y = 0.2, label = "A", size = 4, color = "black") +
+  annotate("text", x = 1.06, y = 0.35, label = "B", size = 4, color = "black") +
+  annotate("text", x = 1.94, y = 0.5, label = "C", size = 4, color = "black") +
+  annotate("text", x = 2.06, y = 0.65, label = "D", size = 4, color = "black")+
+  annotate("text", x = -Inf, y = Inf, label = "J", hjust = -1, vjust = 1, size = 6, fontface = "bold")
+
+
+plot(plot_m7)
+
+plot_m8 <- plot(m8, connect.lines = T) +
+  labs(x = 'Conspecific Shell',
+       y= '',
+       title = "") +
+  guides(color = guide_legend(title = "Conspecific Cue (waterbourne)")) +
+  theme(legend.position = "none") +
+  scale_color_manual(values = c("darkorange","dodgerblue3"))+
+  theme(axis.text = element_text(size = 8), axis.title = element_text(size = 10))+
+  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))+
+  annotate("text", x = .94, y = 0.15, label = "A", size = 4, color = "black") +
+  annotate("text", x = 1.06, y = 0.47, label = "B", size = 4, color = "black") +
+  annotate("text", x = 1.94, y = 0.65, label = "C", size = 4, color = "black") +
+  annotate("text", x = 2.06, y = 0.9, label = "D", size = 4, color = "black")+
+  annotate("text", x = -Inf, y = Inf, label = "H", hjust = -1, vjust = 1, size = 6, fontface = "bold")
+
+
+plot(plot_m8)
+
+plot_m9 <- plot(m9, connect.lines = T) +
+  labs(x = 'Predator Cue',
+       y= '',
+       title = "") +
+  theme(legend.position = "none") +
+  guides(color = guide_legend(title ="Biofilm")) +
+  scale_color_manual(values = c("midnightblue", "chartreuse4"))+
+  theme(axis.text = element_text(size = 8), axis.title = element_text(size = 10))+
+  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))+
+  annotate("text", x = .94, y = 0.15, label = "A", size = 4, color = "black") +
+  annotate("text", x = 1.06, y = 0.35, label = "A", size = 4, color = "black") +
+  annotate("text", x = 1.94, y = 0.2, label = "B", size = 4, color = "black") +
+  annotate("text", x = 2.06, y = 0.4, label = "B", size = 4, color = "black")+
+  annotate("text", x = -Inf, y = Inf, label = "L", hjust = -1, vjust = 1, size = 6, fontface = "bold")
+
+
+plot(plot_m9)
+
+plot_m10 <- plot(m10, connect.lines = T) +
+  labs(x = 'Conspecific Shell',
+       y= '',
+       title = "") +
+  guides(color = guide_legend(title = "Predator Cue")) +
+  theme(legend.position = "none") +
+  scale_color_manual(values = c("Khaki2","orangered4"))+
+  theme(axis.text = element_text(size = 8), axis.title = element_text(size = 10))+
+  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))+
+  annotate("text", x = .94, y = 0.2, label = "A", size = 4, color = "black") +
+  annotate("text", x = 1.06, y = 0.2, label = "A", size = 4, color = "black") +
+  annotate("text", x = 1.94, y = 0.6, label = "B", size = 4, color = "black") +
+  annotate("text", x = 2.06, y = 0.6, label = "B", size = 4, color = "black")+
+  annotate("text", x = -Inf, y = Inf, label = "E", hjust = -1, vjust = 1, size = 6, fontface = "bold")
+
+
+plot(plot_m10)
+
+plot_m11 <- plot(m11, connect.lines = T) +
+  labs(x = 'Conspecific Shell',
+       y= '',
+       title = "") +
+  guides(color = guide_legend(title = "Biofilm")) +
+  theme(legend.position = "none") +
+  scale_color_manual(values = c("midnightblue","chartreuse4"))+
+  theme(axis.text = element_text(size = 8), axis.title = element_text(size = 10))+
+  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))+
+  annotate("text", x = .94, y = 0.2, label = "A", size = 4, color = "black") +
+  annotate("text", x = 1.06, y = 0.35, label = "B", size = 4, color = "black") +
+  annotate("text", x = 1.94, y = 0.6, label = "C", size = 4, color = "black") +
+  annotate("text", x = 2.06, y = 0.8, label = "D", size = 4, color = "black")+
+  annotate("text", x = -Inf, y = Inf, label = "K", hjust = -1, vjust = 1, size = 6, fontface = "bold")
+
+
+plot(plot_m11)
+
+legend_1 <- plot(m10) +
+  labs(x = 'Conspecific Shell',
+       y= '',
+       title = "") +
+  scale_color_manual(values = c("white","white"))+
+  guides(color = guide_legend(title = "Predator Cue", position = "inside", override.aes = list(color=c("Khaki2", "orangered4")))) +
+  theme_bw() +  # Apply black and white theme
+  theme(axis.text = element_text(size = 8, color = "white"),  # Change text color
+        axis.title = element_text(size = 10, color = "white"),
+        panel.grid.major = element_blank(),  # Remove grid lines
+        panel.grid.minor = element_blank(),
+        plot.background = element_rect(fill = "white"),
+        axis.ticks = element_line(color = "white"),
+        panel.border = element_rect(color = "white"),
+        legend.position = "left") +  
+        scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))
+
+plot(legend_1)
+
+legend_2 <- plot(m11) +
+  labs(x = 'Conspecific Shell',
+       y= '',
+       title = "") +
+  scale_color_manual(values = c("white","white"))+
+  guides(color = guide_legend(title = "Biofilm", position = "inside", override.aes = list(color=c("midnightblue", "chartreuse4")))) +
+  theme_bw() +  # Apply black and white theme
+  theme(axis.text = element_text(size = 8, color = "white"),  # Change text color
+        axis.title = element_text(size = 10, color = "white"),
+        panel.grid.major = element_blank(),  # Remove grid lines
+        panel.grid.minor = element_blank(),
+        plot.background = element_rect(fill = "white"),
+        axis.ticks = element_line(color = "white"),
+        panel.border = element_rect(color = "white"),
+        legend.position = "left") +  
+        scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))
+
+plot(legend_2)
+
+legend_3 <- plot(m8) +
+  labs(x = 'Conspecific Shell',
+       y= '',
+       title = "") +
+  scale_color_manual(values = c("white","white"))+
+  guides(color = guide_legend(title = "Conspecific Cue\n(waterbourne)", position = "inside", override.aes = list(color=c("darkorange", "dodgerblue3")))) +
+  theme_bw() +  # Apply black and white theme
+  theme(axis.text = element_text(size = 8, color = "white"),  # Change text color
+        axis.title = element_text(size = 10, color = "white"),
+        panel.grid.major = element_blank(),  # Remove grid lines
+        panel.grid.minor = element_blank(),
+        plot.background = element_rect(fill = "white"),
+        axis.ticks = element_line(color = "white"),
+        panel.border = element_rect(color = "white"),
+        legend.position = "left") +  
+        scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))
+
+plot(legend_3)
+
+legend_4 <- plot(m4) +
+    labs(x = 'Conspecific Shell',
+         y = ' ',
+         title = "") +
+    scale_color_manual(values = c("white", "white")) +
+    guides(color = guide_legend(title = "Predator Cue", 
+                                position = "inside", 
+                                override.aes = list(color = c("Khaki2", "orangered4")))) +
+    theme_bw() +  # Apply black and white theme
+    theme(axis.text = element_text(size = 8, color = "white"),  # Change text color
+          axis.title = element_text(size = 10, color = "white"),
+          panel.grid.major = element_blank(),  # Remove grid lines
+          panel.grid.minor = element_blank(),
+          plot.background = element_rect(fill = "white"),
+          axis.ticks = element_line(color = "white"),
+          panel.border = element_rect(color = "white"),
+          legend.position = "left") +  
+    scale_y_continuous(labels = function(x) paste0(x * 100), limits = c(0, 1))
+  
+  
+  
+plot(legend_4)
+
+labels <- c(" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ")
+
+
+# List of ggplot objects
+plot_list <- list(
+  plot_m3, plot_m6, plot_m, legend_1, 
+  plot_m4, plot_m10, plot_m1, legend_4,
+  plot_m5, plot_m8, plot_m2, legend_3,
+  plot_m7, plot_m11, plot_m9, legend_2)
+
+labeled_plots <- mapply(function(p, label) {
+  arrangeGrob(p, bottom = textGrob(label, gp = gpar(fontsize = 10, fontface = "bold")))
+}, plot_list, labels, SIMPLIFY = FALSE)
+
+grid.arrange(
+  grobs = labeled_plots,
+  nrow = 4,
+  ncol = 4
+)
+
+######################################################################################################################
+#########STOP older version###########################################################################################
+### making one image original code####################################################################################
 install.packages("grid")
 install.packages("gridExtra")
 library(grid)
@@ -365,6 +692,7 @@ plot_m <- plot(m) +
   theme(axis.text = element_text(size = 12), axis.title = element_text(size = 12))+
   scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))
 
+
 plot_m1 <- plot(m1) + 
   labs(x = 'Conspecific Shell', 
        y= 'Larvae Settled (%)',
@@ -372,7 +700,15 @@ plot_m1 <- plot(m1) +
   guides(color = guide_legend(title = "Predator Cue")) + 
   scale_color_manual(values = c("Khaki2", "orangered4"))+
   theme(axis.text = element_text(size = 12), axis.title = element_text(size = 12))+
-  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))
+  scale_y_continuous(labels= function(x) paste0(x*100), limits = c(0,1))+
+  annotate("text", x = .94, y = 0.3, label = "A", size = 4, color = "black") +  # Letter A for Sterilized
+  annotate("text", x = 1.06, y = 0.3, label = "B", size = 4, color = "black") +  # Letter B for Sterilized
+  annotate("text", x = 1.94, y = 0.8, label = "C", size = 4, color = "black") +   # Letter C for Untreated
+  annotate("text", x = 2.06, y = 0.8, label = "D", size = 4, color = "black")  
+  
+
+plot(plot_m1)
+
 
 plot_m2 <- plot(m2) + 
   labs(x = 'Conspecific Shell', 
